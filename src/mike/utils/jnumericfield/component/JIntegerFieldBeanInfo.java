@@ -13,7 +13,7 @@ import java.beans.SimpleBeanInfo;
  *
  * @author mike
  */
-public class JNumericFieldBeanInfo extends SimpleBeanInfo {
+public class JIntegerFieldBeanInfo extends SimpleBeanInfo {
 
     protected Image iconColor16;
     protected Image iconColor32;
@@ -23,7 +23,7 @@ public class JNumericFieldBeanInfo extends SimpleBeanInfo {
     /**
      * Constructs a new BeanInfo.
      */
-    public JNumericFieldBeanInfo(String bean) {
+    public JIntegerFieldBeanInfo(String bean) {
         try {
             iconColor16 = loadImage("/mike/utils/jnumericfield/resources/JNumericFieldColor16.gif");
             iconColor32 = loadImage("/mike/utils/jnumericfield/resources/JNumericFieldColor32.gif");
@@ -36,7 +36,7 @@ public class JNumericFieldBeanInfo extends SimpleBeanInfo {
     
     @Override
     public BeanDescriptor getBeanDescriptor() {
-        BeanDescriptor bd = new BeanDescriptor(JNumericField.class, null);
+        BeanDescriptor bd = new BeanDescriptor(JIntegerField.class, null);
         bd.setDisplayName("Numeric Field");
         bd.setName("A lightweight component that allow the editing of a simple line of a length determined.");
         return bd;
