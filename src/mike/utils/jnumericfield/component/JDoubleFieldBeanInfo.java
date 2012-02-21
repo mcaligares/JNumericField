@@ -1,60 +1,33 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package mike.utils.jnumericfield.component;
 
-import java.awt.Image;
 import java.beans.BeanDescriptor;
 import java.beans.SimpleBeanInfo;
 
 /**
- *
- * @author mike
+ * JDoubleFieldBeanInfo.java
+ * Created on 18/02/2012, 10:25:55
+ * 
+ * @author Miguel Augusto Caligares
+ * @email mcaligares@gmail.com
+ * @version 0.1.4
  */
-public class JDoubleFieldBeanInfo extends SimpleBeanInfo{
-
-    protected Image iconColor16;
-    protected Image iconColor32;
-    protected Image iconMono16;
-    protected Image iconMono32;
-
-    /**
-     * Constructs a new BeanInfo.
-     */
-    public JDoubleFieldBeanInfo(String bean) {
-        try {
-            iconColor16 = loadImage("/mike/utils/jnumericfield/resources/JNumericFieldColor16.gif");
-            iconColor32 = loadImage("/mike/utils/jnumericfield/resources/JNumericFieldColor32.gif");
-            iconMono16 = loadImage("/mike/utils/jnumericfield/resources/JNumericFieldMono16.gif");
-            iconMono32 = loadImage("/mike/utils/jnumericfield/resources/JNumericFieldMono32.gif");
-        } catch (RuntimeException e) {
-            System.out.println("GenericBeanInfo.GenericBeanInfo(): " + e);
-        }
-    }
-    
+public class JDoubleFieldBeanInfo extends SimpleBeanInfo {
+    private static final String FILE = "/mike/utils/jnumericfield/resources/JNumericFieldIcon%s.gif";
     @Override
     public BeanDescriptor getBeanDescriptor() {
         BeanDescriptor bd = new BeanDescriptor(JIntegerField.class, null);
-        bd.setDisplayName("Numeric Field");
-        bd.setName("A lightweight component that allow the editing of a simple line of a length determined.");
+        bd.setDisplayName("Double Field");
+        bd.setShortDescription("A lightweight component that allow the editing of a simple line of a length determined.");
         return bd;
     }
-
     @Override
-    public Image getIcon(int iconKind) {
+    public java.awt.Image getIcon(int iconKind) {
         switch (iconKind) {
-            case ICON_COLOR_16x16:
-                return iconColor16;
-            case ICON_COLOR_32x32:
-                return iconColor32;
-            case ICON_MONO_16x16:
-                return iconMono16;
-            case ICON_MONO_32x32:
-                return iconMono32;
+            case ICON_MONO_16x16: return loadImage(String.format(FILE, "Mono16"));
+            case ICON_MONO_32x32: return loadImage(String.format(FILE, "Mono32"));
+            case ICON_COLOR_16x16:  return loadImage(String.format(FILE, "Color16"));
+            case ICON_COLOR_32x32: return loadImage(String.format(FILE, "Color32"));
+            default: return null;
         }
-        return null;
     }
-
-    
 }

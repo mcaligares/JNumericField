@@ -1,12 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package mike.utils.jnumericfield.exceptions;
 
 /**
- *
- * @author mike
+ * NumericFormatException.java
+ * 
+ * @author Miguel Augusto Caligares
+ * @email mcaligares@gmail.com
+ * @version 0.1.4
  */
 public class NumericFormatException extends Exception{
     private static final long serialVersionUID = -2118892738213251887L;

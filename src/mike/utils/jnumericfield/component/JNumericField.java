@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package mike.utils.jnumericfield.component;
 
 import java.awt.Color;
@@ -13,11 +9,14 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JTextField;
 
 /**
- *
- * @author mike
+ * JNumericField.java
+ * 
+ * @author Miguel Augusto Caligares
+ * @email mcaligares@gmail.com
+ * @version 0.1.4
  */
 public class JNumericField extends JTextField implements KeyListener, FocusListener {
-    private static final long serialVersionUID = 7616424087071733020L;
+    private static final long serialVersionUID = -7016382511880655438L;
     // Properties name
     public static final String PROPERTY_FIELD_NAME = "fieldName";
     public static final String PROPERTY_LENGTH = "length";
@@ -27,22 +26,14 @@ public class JNumericField extends JTextField implements KeyListener, FocusListe
     protected boolean state;
     protected Color color;
     protected int length;
-    
 
     // Empty constructor
-    public JNumericField() {
-        
-    }
+    public JNumericField() {}
+    
     // Getters methods
-    public int getLength() {
-        return length;
-    }
-    public String getFieldName() {
-        return fieldName;
-    }
-    public boolean isState() {
-        return state;
-    }
+    public int getLength() {return length;}
+    public String getFieldName() {return fieldName;}
+    public boolean isState() {return state;}
     
     // Setters methods
     public void setLength(int newValue) {
@@ -62,7 +53,7 @@ public class JNumericField extends JTextField implements KeyListener, FocusListe
     public void setState(boolean newValue) {
         boolean oldValue = state;
         state = newValue;
-        if(state)
+        if(!state)
             setForeground(Color.RED);
         else
             setForeground(color);
@@ -70,36 +61,26 @@ public class JNumericField extends JTextField implements KeyListener, FocusListe
     }
     
     @Override
-    public void keyTyped(KeyEvent arg0) {
-    }
-
+    public void keyTyped(KeyEvent arg0) {}
     @Override
-    public void keyPressed(KeyEvent arg0) {
-    }
-
+    public void keyPressed(KeyEvent arg0) {}
     @Override
     public void keyReleased(KeyEvent arg0) {
         //TODO implementation code
     }
-
     @Override
     public void focusGained(FocusEvent arg0) {
         setSelectionStart(0);
         setSelectionEnd(getText().length());
     }
-
     @Override
-    public void focusLost(FocusEvent arg0) {
-    }
-
+    public void focusLost(FocusEvent arg0) {}
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
          super.addPropertyChangeListener(listener);
      }
-
     @Override
      public void removePropertyChangeListener(PropertyChangeListener listener) {
          super.removePropertyChangeListener(listener);
-     }
-    
+     }   
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package mike.utils.jnumericfield.component;
 
 import java.awt.Color;
@@ -9,17 +5,19 @@ import java.awt.event.KeyEvent;
 import mike.utils.jnumericfield.exceptions.NumericFormatException;
 
 /**
- *
- * @author mike
+ * JIntegerField.java
+ * 
+ * @author Miguel Augusto Caligares
+ * @email mcaligares@gmail.com
+ * @version 0.1.4
  */
 public class JIntegerField extends JNumericField {
-    private static final long serialVersionUID = 7616424087071733020L;
+    private static final long serialVersionUID = 7266469091641281550L;
     // Properties name
-    public static final String PROPERTY_INTEGER = "integer";
+    public static final String PROPERTY_INTEGER = "integerValue";
     // Properties
-    private Integer integer;
+    private Integer integerValue;
     
-
     // Empty constructor
     public JIntegerField() {
         this("field jNumericField", 0, 10, true);
@@ -31,7 +29,7 @@ public class JIntegerField extends JNumericField {
     // Constructor
     @SuppressWarnings("LeakingThisInConstructor")
     public JIntegerField(String fieldName, Integer integer, int length, boolean state) {
-        this.integer = integer;
+        this.integerValue = integer;
         this.length = length;
         this.fieldName = fieldName;
         this.color = getForeground();
@@ -43,34 +41,42 @@ public class JIntegerField extends JNumericField {
     }
     // Getters methods
     public Integer getInteger() throws NumericFormatException {
-        if (state) {
-            return integer;
-        }
+        checkInput();
+        if (state)
+            return integerValue;
         throw new NumericFormatException(fieldName);
     }
     public void setInteger(Integer newValue) {
         try {
-            Integer oldValue = this.integer;
-            this.integer = newValue;
+            Integer oldValue = this.integerValue;
+            this.integerValue = newValue;
             setText(newValue.toString());
             super.firePropertyChange(PROPERTY_INTEGER, oldValue, newValue);
         }
         catch(RuntimeException ex) {
-            
+            throw new RuntimeException("Error al querer modificar la propiedad "+PROPERTY_INTEGER);
         }
     }
     @Override
     public void keyReleased(KeyEvent arg0) {
+        checkInput();
+    }
+    private void checkInput() {
         try {
             if (getText().length() < length) {
-                integer = Integer.parseInt(getText());
-            } else {
+                if(getText().isEmpty())
+                    integerValue = 0;
+                else
+                    integerValue = Integer.parseInt(getText());
+            }
+            else {
                 setText(getText().substring(0, length));
-                integer = Integer.parseInt(getText());
+                integerValue = Integer.parseInt(getText());
             }
             setForeground(color);
             state = true;
-        } catch (NumberFormatException ex) {
+        }
+        catch (NumberFormatException ex) {
             setForeground(Color.RED);
             state = false;
         }
