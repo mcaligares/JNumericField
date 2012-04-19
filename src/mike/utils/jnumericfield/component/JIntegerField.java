@@ -50,7 +50,10 @@ public class JIntegerField extends JNumericField {
         try {
             Integer oldValue = this.integerValue;
             this.integerValue = newValue;
-            setText(newValue.toString());
+            if(newValue!=null)
+                setText(newValue.toString());
+            else
+                setText("");
             super.firePropertyChange(PROPERTY_INTEGER, oldValue, newValue);
         }
         catch(RuntimeException ex) {

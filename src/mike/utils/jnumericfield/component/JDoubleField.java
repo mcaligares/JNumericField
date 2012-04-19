@@ -70,7 +70,10 @@ public class JDoubleField extends JNumericField {
         try {
             Double oldValue = this.doubleValue;
             this.doubleValue = newValue;
-            setText(newValue.toString());
+            if(newValue!=null)
+                setText(newValue.toString());
+            else
+                setText("");
             super.firePropertyChange(PROPERTY_DOUBLE, oldValue, newValue);
         }
         catch (RuntimeException ex) {
